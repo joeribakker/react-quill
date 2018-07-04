@@ -47,14 +47,6 @@ yarn add react-quill
 ```
 
 Special thank you to everyone who contributed during the 1.0.0 release cycle!
- 
----
-
-🏵 **Welcoming @alexkrolick to the team!**
-His contributions have been incredible so far, and his passion and dedication will bring some much-deserved love to this project.
-
----
-
 
 ## Quick Start
 
@@ -681,6 +673,23 @@ class Editor extends React.Component {
 
 </details>
 
+
+`makeUnprivilegedEditor`
+: Creates an [unprivileged editor](#unprivileged-editor). Pass this method a reference to the Quill instance from `getEditor`. Normally you do not need to use this method since the editor exposed to event handlers is already unprivileged.
+
+
+<details>
+<summary>Example</summary>
+
+```jsx
+const editor = this.reactQuillRef.getEditor();
+const unprivilegedEditor = this.reactQuillRef.makeUnprivilegedEditor(editor);
+// You may now use the unprivilegedEditor proxy methods
+unprivilegedEditor.getText();
+```
+
+</details>
+
 ### The unprivileged editor
 
 During events, ReactQuill will make a restricted subset of the Quill API available as the `editor` argument. This prevents access to destructive methods, which might case ReactQuill to get out-of-sync with the component. It provides the following methods, which are mostly proxies of existing [Quill methods](https://quilljs.com/docs/api/):
@@ -702,7 +711,6 @@ During events, ReactQuill will make a restricted subset of the Quill API availab
 
 `getBounds()`
 : Returns the pixel position, relative to the editor container, and dimensions, of a selection, at a given location.
-
 
 ## Building and testing
 
